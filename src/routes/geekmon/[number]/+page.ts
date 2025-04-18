@@ -4,11 +4,12 @@ import type { PageLoad } from "./$types";
 import { geekmons } from "$lib/geekmons";
 
 export const load: PageLoad = ({ params }) => {
-  const geekmon = geekmons.find((g) => g.number === params.number || g.name.toLowerCase() === params.number.toLowerCase());
+  const idx = geekmons.findIndex((g) => g.number === params.number || g.name.toLowerCase() === params.number.toLowerCase());
 
-  if (geekmon) {
+  if (idx >= 0) {
     return {
-      geekmon,
+      geekmon: geekmons[idx],
+      idx,
     };
   }
 
