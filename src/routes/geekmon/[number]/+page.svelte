@@ -174,10 +174,15 @@
   <!-- Captured -->
   <div class="relative px-6 py-3 text-center text-white">
     <button
+      aria-label="captured"
       onclick={() =>
         captured.includes(geekmon.number) ? (captured = without(captured, geekmon.number)) : captured.push(geekmon.number)}
     >
-      [icone de captura/cubo]
+      <img
+        src="/img/cubo.png"
+        alt="capture cube"
+        class="size-15 rounded-full {captured.includes(geekmon.number) ? 'bg-green-950' : 'bg-red-950'}"
+      />
     </button>
   </div>
 

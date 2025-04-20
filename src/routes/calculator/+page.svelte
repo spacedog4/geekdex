@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { calculatePoints } from "$lib/calculator";
   import { GeekmonMap, geekmons } from "$lib/geekmons";
   import { without } from "underscore";
 
@@ -38,53 +39,14 @@
   }
 
   function pointMap(captured: string[]) {
-    const rawCaptured = captured.map((c) => c.split(":")[0]);
+    const rawCaptured = new Set(captured.map((c) => c.split(":")[0]));
     const points: Record<string, number> = {};
 
     for (const c of captured) {
       const [number, ...flags] = c.split(":");
       const shiny = flags.includes("s");
 
-      const geekmon = GeekmonMap[number];
-
-      if (geekmon.tags.includes("legendary")) {
-        points[c] = 9 + (shiny ? 3 : 0);
-        continue;
-      }
-
-      if (geekmon.evolutions.length === 1) {
-        points[c] = 6 + (shiny ? 3 : 0);
-        continue;
-      }
-
-      let capturedEvolutions = 0;
-      for (const evoLine of geekmon.evolutions) {
-        for (const evo of evoLine) {
-          if (rawCaptured.includes(evo)) {
-            capturedEvolutions += 1;
-          }
-        }
-      }
-
-      if (geekmon.tags.includes("over")) {
-        points[c] = (capturedEvolutions === 2 ? 15 : -5) + (shiny ? 3 : 0);
-        continue;
-      }
-
-      if (geekmon.evolutions.length === 2) {
-        points[c] = 4 * capturedEvolutions + (shiny ? 3 : 0);
-        continue;
-      }
-
-      if (geekmon.evolutions.length === 3) {
-        points[c] = 4 + 3 * (capturedEvolutions - 1) + (shiny ? 3 : 0);
-        continue;
-      }
-
-      if (geekmon.evolutions.length === 4) {
-        points[c] = 3 * capturedEvolutions + (shiny ? 3 : 0);
-        continue;
-      }
+      points[c] = calculatePoints(number, rawCaptured, shiny);
     }
 
     return points;
@@ -163,7 +125,7 @@
     <div class="mb-5 flex flex-wrap justify-center gap-2 font-mono">
       {#each geekmons as geekmon}
         <button
-          class={"inline-flex cursor-pointer items-center rounded-full px-2.5 py-0.5 text-lg font-semibold transition-colors select-none " +
+          class={"text-md inline-flex cursor-pointer items-center rounded-full px-2.5 py-0.5 font-semibold transition-colors select-none " +
             (captured[player].includes(geekmon.number + ":s")
               ? "bg-violet-400"
               : captured[player].includes(geekmon.number)
@@ -180,9 +142,21 @@
       {#each captured[player].toSorted() as c (c)}
         {@const [n, ...flags] = c.split(":")}
         {@const shiny = flags.includes("s")}
-        <div class={`rounded-sm p-2 ${shiny ? "bg-purple-200" : "bg-white"} text-center`}>
+        {@const point = pointMap(captured[player])[c]}
+
+        <div class="mb-5 rounded-xl {shiny ? 'bg-purple-200' : 'bg-gray-200'} relative p-2 pb-5 text-center shadow-md">
           <img src={`/img/geekmons/${shiny ? "shiny/" : ""}${n}.png`} alt="" class="size-20" />
-          {pointMap(captured[player])[c]}
+          <div class=" mx-auto -mb-7 w-[80%] rounded-xl bg-gray-200 text-center">{n}</div>
+
+          <div class="absolute top-0 left-0 z-60 mx-auto flex h-full w-full items-center justify-center">
+            <span
+              class="flex size-15 items-center justify-center rounded-full text-2xl font-bold text-white {point > 0
+                ? 'bg-green-950/70'
+                : 'bg-red-800/70'} "
+            >
+              {point}
+            </span>
+          </div>
         </div>
       {/each}
     </div>

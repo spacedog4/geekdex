@@ -6,7 +6,9 @@
   let search = $state("");
 
   const filtered = $derived(() =>
-    geekmons.filter((p) => p.name.toLowerCase().includes(search.trim().toLowerCase()) || p.number.includes(search.trim())),
+    geekmons.filter(
+      (p) => !p.hidden && (p.name.toLowerCase().includes(search.trim().toLowerCase()) || p.number.includes(search.trim())),
+    ),
   );
 
   const captured: string[] = $state(JSON.parse(localStorage.getItem("captured")!) ?? []);
