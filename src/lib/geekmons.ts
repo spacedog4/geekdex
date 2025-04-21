@@ -2304,7 +2304,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Aeraphis controla os ventos e os céus e foi responsável por impor a ordem ao mundo Geekmon. Suas habilidades permitem-lhe manipular tempestades, ciclones e até a intensidade do sol. Aeraphis é visto como o juiz dos céus, equilibrando o ciclo das estações e garantindo que o clima seja justo para todas as criaturas. Quando provocado, sua fúria pode convocar raios devastadores ou tornados gigantescos, capazes de romper a ordem estabelecida, colocando o mundo em um eterno estado caótico.",
     ref: "Um deus-serpente asteca, governante dos céus e dos ventos, que impõe ordem aos elementos com seu poder celestial.",
-    tags: [],
+    tags: ["mythic"],
     evolutions: [["159"]],
     habitat: [],
     elements: ["fera", "místico"],

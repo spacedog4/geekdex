@@ -1,5 +1,5 @@
 import { error } from "@sveltejs/kit";
-import type { PageLoad } from "./$types";
+import type { EntryGenerator, PageLoad } from "./$types";
 
 import { geekmons } from "$lib/geekmons";
 
@@ -14,4 +14,8 @@ export const load: PageLoad = ({ params }) => {
   }
 
   error(404, "Not found");
+};
+
+export const entries: EntryGenerator = () => {
+  return geekmons.map((g) => ({ number: g.number }));
 };

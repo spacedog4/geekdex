@@ -18,6 +18,10 @@ function doCalculatePoints(number: string, captured: Set<string>): number {
     return calculateHyro(captured);
   }
 
+  if (geekmon.tags.includes("mythic")) {
+    return calculateMythic(number, captured);
+  }
+
   // Legendary geekmons always gives 9 points
   if (geekmon.tags.includes("legendary")) {
     return 9;
@@ -80,4 +84,20 @@ function calculateHyro(captured: Set<string>): number {
   const capturedEvolutions = new Set(["057", "058", "059", "060"]).intersection(captured).size;
 
   return 3 * capturedEvolutions;
+}
+
+function calculateMythic(number: string, captured: Set<string>) {
+  // Nar'zalokh and Terradon are always worth 9
+  if (number === "115" || number === "157") {
+    return 9;
+  }
+
+  // Marinith is always worth 6
+  if (number === "158") {
+    return 6;
+  }
+
+  // Aeraphis is worth 12 -5 for each other mythic captured
+  const otherMythics = new Set(["115", "157", "158"]).intersection(captured).size;
+  return 12 - 5 * otherMythics;
 }
