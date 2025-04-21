@@ -11,16 +11,18 @@
     corrupted: "bg-purple-800 text-white",
     purified: "bg-cyan-700 text-white",
     mythic: "bg-cyan-700 text-white",
+    specter: "bg-violet-900",
   }[tag];
 
   const text = {
     initial: "♥  Inicial",
-    legendary: "♥  Lendário",
-    over: "♥  Crescimento Desenfreado",
+    legendary: "Lendário",
+    over: "Crescimento Desenfreado",
     shiny: "☆ Luminoso",
     corrupted: "Corrompido",
     purified: "Purificado",
     mythic: "Mítico",
+    specter: "Specter",
   }[tag];
 </script>
 

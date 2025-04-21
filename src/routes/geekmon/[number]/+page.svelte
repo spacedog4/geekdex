@@ -128,7 +128,7 @@
 
   <!-- Bottom div -- info and bio -->
   <div class="-mt-4 rounded-3xl bg-white p-6 shadow-lg">
-    {#if getSource(geekmon) !== "base"}
+    {#if getSource(geekmon) !== "base" && getSource(geekmon) !== "catarse"}
       <img class="mx-auto max-h-20" src="/img/logos/{getSource(geekmon)}.png" alt="" />
     {/if}
 
@@ -150,7 +150,7 @@
     <h2 class="mt-3 mb-3 text-lg font-bold underline">Habitats</h2>
     <div class="mt-3 flex gap-1">
       {#each geekmon.habitat as habitat (habitat)}
-        <img src={`/img/hab_${habitat}.png`} alt={habitat} class="size-20" />
+        <img src={`/img/habitats/${habitat}.png`} alt={habitat} class="size-20" />
       {/each}
     </div>
 
