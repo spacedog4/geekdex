@@ -18,13 +18,43 @@
   <header class="mb-6 flex flex-row">
     <h1 class="text-4xl font-extrabold text-gray-900">Geekdex</h1>
     <div class="ml-auto">
-      <a href="/calculator" aria-label="calculator">
-        <button class="rounded-xl bg-gray-200 p-1" aria-label="calculator">
-          <svg class="h-7 w-7 fill-gray-700 text-gray-700" viewBox="0 -960 960 960">
-            <path
-              d="M320-240h60v-80h80v-60h-80v-80h-60v80h-80v60h80v80Zm200-30h200v-60H520v60Zm0-100h200v-60H520v60Zm44-152 56-56 56 56 42-42-56-58 56-56-42-42-56 56-56-56-42 42 56 56-56 58 42 42Zm-314-70h200v-60H250v60Zm-50 472q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"
-            />
+      <a href="/setup" aria-label="setup">
+        <button class="rounded-xl bg-gray-200 p-2" aria-label="setup">
+          <svg
+            class="lucide lucide-play-icon lucide-play h-6 w-6 stroke-gray-700 text-gray-700"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polygon points="6 3 20 12 6 21 6 3" />
           </svg>
+        </button>
+      </a>
+      <a href="/calculator" aria-label="calculator">
+        <button class="rounded-xl bg-gray-200 p-2" aria-label="calculator">
+          <svg
+            class="lucide lucide-calculator-icon lucide-calculator h-6 w-6 stroke-gray-700 text-gray-700"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect width="16" height="20" x="4" y="2" rx="2" />
+            <line x1="8" x2="16" y1="6" y2="6" /><line x1="16" x2="16" y1="14" y2="18" /><path d="M16 10h.01" /><path
+              d="M12 10h.01"
+            /><path d="M8 10h.01" /><path d="M12 14h.01" /><path d="M8 14h.01" /><path d="M12 18h.01" /><path
+              d="M8 18h.01"
+            /></svg
+          >
         </button>
       </a>
     </div>

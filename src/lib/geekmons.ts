@@ -6,11 +6,18 @@ export type Habitat = "campo" | "floresta" | "urbano" | "caverna" | "montanha" |
 
 export type Element = "água" | "fogo" | "planta" | "magnético" | "místico" | "crepuscular" | "terra" | "fera";
 
+export type Group = Record<string, {
+  title: string;
+  color: string;
+  source: Source;
+}>;
+
 export type Geekmon = {
   number: string;
   name: string;
   description: string;
   ref?: string;
+  groups?: string[];
   tags: Tag[];
   evolutions: string[][];
   habitat: Habitat[];
@@ -58,6 +65,64 @@ export function getSource(geekmon: Geekmon): Source {
   }
 
   return "catarse";
+}
+
+export const groups: Group = {
+  orange: {
+      title: "Laranja",
+      color: "#ff7f00",
+      source: "base",
+  },
+  brown: {
+      title: "Marrom",
+      color: "#7f4b00",
+      source: "base",
+  },
+  gray: {
+      title: "Cinza",
+      color: "#7f7f7f",
+      source: "base",
+  },
+  blue: {
+      title: "Azul",
+      color: "#0073ff",
+      source: "base",
+  },
+  purple: {
+      title: "Roxo",
+      color: "#7f00ff",
+      source: "base",
+  },
+  yellow: {
+      title: "Amarelo",
+      color: "#ffff00",
+      source: "base",
+  },
+  black: {
+      title: "Preto",
+      color: "#000000",
+      source: "desafio_dos_cristais",
+  },
+  white: {
+      title: "Branco",
+      color: "#ffffff",
+      source: "desafio_dos_cristais",
+  },
+  light_green: {
+      title: "Verde Claro",
+      color: "#7fff00",
+      source: "desafio_dos_cristais",
+  },
+  green: {
+      title: "Verde",
+      color: "#178f31",
+      source: "novos_horizontes",
+  },
+  pink: {
+      title: "Rosa",
+      color: "#ed34ac",
+      source: "novos_horizontes",
+  }
 }
 
 export const geekmons: Geekmon[] = [
@@ -318,6 +383,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Sadworm é um Geekmon introvertido que raramente emerge da terra, preferindo viver em profundos túneis cavados sob as dunas ou florestas densas. Possui uma pequena raiz em desenvolvimento na ponta de sua cauda, indicando sua conexão com a terra. Embora sua expressão triste seja constante, ele é bastante resiliente. Porém, Sadworm prefere evitar confrontos, utilizando sua camuflagem natural para se misturar ao ambiente.",
     ref: "Um colossal verme de areia, conhecido por mover-se por debaixo da terra e inspirar terror nas dunas do deserto.",
+    groups: ["brown"],
     tags: [],
     evolutions: [["019", "020"]],
     habitat: ["deserto", "floresta"],
@@ -332,6 +398,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Mesmo com um corpo imenso, Rootworm é capaz de atravessar com agilidade tanto as dunas do deserto quanto os solos das florestas. A raiz na ponta de sua cauda está totalmente desenvolvida e permite que ele se ancore no solo para desferir ataques precisos ou escapar de ameaças. Agressivo e territorial, Rootworm defende seu território com força e vigor. Sua capacidade de se camuflar tanto em terrenos arenosos quanto entre as árvores o torna um caçador mortal.",
     ref: "Um colossal verme de areia, conhecido por mover-se por debaixo da terra e inspirar terror nas dunas do deserto.",
+    groups: ["brown"],
     tags: [],
     evolutions: [["019", "020"]],
     habitat: ["deserto", "floresta"],
@@ -346,6 +413,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Com chifres pequenos e uma pelagem delicada ao redor de seu pescoço, Malepillar passa seus dias mastigando folhas e se preparando para uma grandiosa metamorfose. Sua aparência curiosa e peculiar esconde um temperamento volátil, reagindo rapidamente a qualquer ameaça. Treinadores que cuidam de Malepillar devem ter paciência, pois esse estágio é crucial para o desenvolvimento de seu verdadeiro poder.",
     ref: "Uma poderosa feiticeira, conhecida por sua transformação dramática e uma presença intimidadora.",
+    groups: ["blue"],
     tags: [],
     evolutions: [["021", "022", "023"]],
     habitat: ["floresta", "campo"],
@@ -360,13 +428,14 @@ export const geekmons: Geekmon[] = [
     description:
       "Envolta em um resistente casulo, Malecoon mergulha em um estado de hibernação profunda enquanto se prepara para sua metamorfose final. Seus chifres, agora maiores, são uma poderosa defesa natural, contra predadores. Porém, se perturbada, é capaz de desferir ataques inesperados mesmo em seu estado adormecido. Sua evolução depende de sua capacidade de se proteger até estar pronto para sua verdadeira forma.",
     ref: "Uma poderosa feiticeira, conhecida por sua transformação dramática e uma presença intimidadora.",
+    groups: ["blue"],
     tags: [],
     evolutions: [["021", "022", "023"]],
     habitat: ["floresta", "campo"],
     elements: ["fera"],
     weakness: "místico",
     weight: 10,
-    height: 0.7,
+    height: 0.7
   },
   {
     number: "023",
@@ -374,6 +443,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Com suas majestosas asas e chifres negros que irradiam poder, Malemoth é o estágio final de um grande processo de metamorfose. Seu voo gracioso pelos céus das florestas esconde um perigo mortal: suas asas liberam um pó paralisante quando sente-se ameaçada. Embora sua aparência seja exuberante, os treinadores devem ser cautelosos: Malemoth é tanto bela quanto perigosa, reagindo com força quando provocada.",
     ref: "Uma poderosa feiticeira, conhecida por sua transformação dramática e uma presença intimidadora.",
+    groups: ["blue"],
     tags: [],
     evolutions: [["021", "022", "023"]],
     habitat: ["floresta", "campo"],
@@ -388,6 +458,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Misticken é reverenciada em lendas antigas por suas habilidades de acelerar o crescimento das plantas, protegendo campos férteis com poderes místicos. Seus dons psíquicos confundem quem tenta se aproximar com más intenções, apagando da memória qualquer visão de sua presença. Encontrá-la é extremamente raro, e os treinadores que conquistam sua confiança são agraciados com seus poderes de cultivo e proteção da terra.",
     ref: "Uma criatura que vive em fazendas pacíficas, ajudando a terra a florescer e acelerando o crescimento das colheitas.",
+    groups: ["brown"],
     tags: [],
     evolutions: [["024"]],
     habitat: ["campo", "floresta"],
@@ -402,6 +473,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Sisgems é um trio inseparável de irmãs, conectadas por três pedras preciosas que brilham intensamente quando estão próximas. Cada irmã possui uma habilidade única e um temperamento distinto, mas é na cooperação que encontram sua verdadeira força. Juntas, combinam o poder do fogo e da terra para realizar ataques devastadores e coordenados. Leais entre si, sua força vem de sua união inabalável.",
     ref: "Um trio poderoso de irmãs, conhecidas por sua união e habilidade de proteger sua cidade contra as forças do mal.",
+    groups: ["gray"],
     tags: [],
     evolutions: [["025"]],
     habitat: ["montanha", "urbano"],
@@ -416,6 +488,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Botuci é um Geekmon brincalhão, conhecido por seus truques astutos e sua habilidade de desaparecer quando bem entender. Apesar de adorar pregar peças nos que passam pelo seu território, Botuci tem um coração generoso e não hesita em agir quando percebe que alguém precisa de ajuda. Sua habilidade de se esconder rapidamente intriga os treinadores, mas é aconselhável manter a atenção ao explorar áreas onde este Geekmon vive.",
     ref: "Uma figura folclórica famosa por sua natureza travessa e por desaparecer em redemoinhos enquanto prega peças.",
+    groups: ["blue"],
     tags: [],
     evolutions: [["026", "027"]],
     habitat: ["floresta", "montanha"],
@@ -430,6 +503,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Quando Botuci encontra uma garrafa vazia, ele se esconde dentro dela e evolui para Sacicatu. Este Geekmon, agora forte e imponente, torna-se eternamente ligado à garrafa, que amplifica seus poderes. Sacicatu combina força física com habilidades ilusórias, formando um lutador temível que pode manipular o campo de batalha a seu favor. Seu espírito selvagem e natureza indomável o torna difícil de treinar, mas, sob a tutela de um treinador habilidoso, ele se torna um aliado inestimável.",
     ref: "Uma figura folclórica famosa por sua natureza travessa e por desaparecer em redemoinhos enquanto prega peças.",
+    groups: ["blue"],
     tags: [],
     evolutions: [["026", "027"]],
     habitat: ["floresta", "montanha"],
@@ -444,6 +518,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Magihat está profundamente sintonizado com as energias místicas do universo, representando as maravilhas e encantos naturais. Seu chapéu serve como catalisador para seus truques e ilusões mágicas, criando faíscas elétricas e feitiços encantadores. A aura de mistério que emana de Magihat fascina e encanta todos ao seu redor. Embora seja um mago iniciante, Magihat possui um imenso potencial mágico que aguarda ser revelado.",
     ref: "O poderoso mago ao lado do maior duelista de todos os tempos, desde a era dos faraós.",
+    groups: ["purple"],
     tags: [],
     evolutions: [["028", "029"]],
     habitat: ["floresta", "urbano"],
@@ -458,6 +533,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Flygician é um mestre das artes místicas. Empunhando um cajado que crepita com energia elétrica, Flygician conjura feitiços impressionantes e sua aura ressoa com poder arcano. Como guardião dos segredos antigos, Flygician protege o conhecimento oculto e usa sua sabedoria para manter o equilíbrio entre as forças místicas. Sua maestria sobre as artes arcanas e seu domínio da eletricidade fazem dele um aliado temível e altamente respeitado.",
     ref: "O poderoso mago ao lado do maior duelista de todos os tempos, desde a era dos faraós.",
+    groups: ["purple"],
     tags: [],
     evolutions: [["028", "029"]],
     habitat: ["floresta", "urbano"],
@@ -472,6 +548,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Mouselet é um adorável bebê com grandes olhos brilhantes e uma aparência inocente. Sua carinha fofa consegue derreter até os corações mais duros, mas por trás desse exterior encantador, ele carrega um imenso potencial oculto. Dependendo de seu gênero, Mouselet evolui em dois caminhos distintos: os machos tornam-se Sorcerat, um aprendiz de feiticeiro que controla águas e sombras, enquanto as fêmeas evoluem para Faecharm, uma fada camundonga capaz de dominar o fogo.",
     ref: "Um camundongo carismático, conhecido por encantar gerações em histórias mágicas e inesquecíveis.",
+    groups: ["brown"],
     tags: [],
     evolutions: [
       ["030", "031", "032"],
@@ -489,6 +566,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Ao evoluir, um Mouselet macho se transforma em Sorcerat, um aprendiz de feiticeiro com domínio sobre a água e as sombras. Ele carrega uma esfera mágica em sua cauda que serve como fonte de seu poder. Sorcerat é hábil na criação de ilusões e no controle de fluxos aquáticos, sempre buscando aprimorar suas técnicas. Mesmo como aprendiz, ele já exibe uma impressionante capacidade de usar seus feitiços para confundir e controlar seus adversários.",
     ref: "Um camundongo carismático, conhecido por encantar gerações em histórias mágicas e inesquecíveis.",
+    groups: ["brown"],
     tags: [],
     evolutions: [["030", "031", "032"]],
     habitat: ["campo", "floresta"],
@@ -503,6 +581,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Enchantail é um mestre feiticeiro que controla as forças da água e da escuridão com extrema destreza. A esfera em sua cauda carrega um imenso poder, sendo a chave de seu controle sobre as energias elementais. Enchantail é capaz de convocar tempestades e envolverse em sombras, tornando-se invisível para atacar seus inimigos. Sua sabedoria e seu domínio das artes mágicas o tornam um combatente implacável e um líder natural entre os Geekmons.",
     ref: "Um camundongo carismático, conhecido por encantar gerações em histórias mágicas e inesquecíveis.",
+    groups: ["brown"],
     tags: [],
     evolutions: [["030", "031", "032"]],
     habitat: ["campo", "floresta"],
@@ -517,6 +596,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Faecharm, a evolução de um Mouselet fêmea, se torna uma jovem fada com domínio sobre o elemento fogo. A esfera em sua cauda é a fonte de sua magia, amplificando suas habilidades encantatórias e permitindo-lhe controlar as chamas com precisão. Faecharm emite uma luz calorosa que conforta seus aliados e intimida seus inimigos. Embora possua uma aparência delicada, Faecharm é uma das manipuladoras mais promissoras de seu tipo, combinando graciosidade e poder destrutivo.",
     ref: "Um camundongo carismático, conhecido por encantar gerações em histórias mágicas e inesquecíveis.",
+    groups: ["brown"],
     tags: [],
     evolutions: [["030", "033", "034"]],
     habitat: ["campo", "floresta"],
@@ -531,6 +611,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Blazesprite é uma poderosa fada que domina as artes do fogo com maestria. A esfera em sua cauda concentra uma quantidade imensa de energia elemental, capaz de gerar chamas intensas e encantos poderosos. Blazesprite é temida por sua habilidade de incinerar oponentes com uma única explosão de fogo, enquanto mantém uma aparência graciosa e encantadora. Seu equilíbrio entre delicadeza e poder avassalador a torna uma força inigualável no campo de batalha.",
     ref: "Um camundongo carismático, conhecido por encantar gerações em histórias mágicas e inesquecíveis.",
+    groups: ["brown"],
     tags: [],
     evolutions: [["030", "033", "034"]],
     habitat: ["campo", "floresta"],
@@ -545,6 +626,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Vampling é um pequeno morcego alegre e brincalhão, conhecido por sua natureza sociável. Seus grandes olhos brilham de excitação, mas, por trás desta aparência adorável, ele esconde habilidades psíquicas capazes de hipnotizar seus oponentes, através de seu olhar penetrante. Suas asas possuem um toque venenoso, mas ele ainda está aprendendo a usá-las em batalha.",
     ref: "Um famoso conde imortal que vive nas sombras, conhecido por sua sede por sangue.",
+    groups: ["orange"],
     tags: [],
     evolutions: [["035", "036"]],
     habitat: ["caverna", "floresta"],
@@ -559,6 +641,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Dracubat é um morcego imponente e astuto. Suas asas possuem um veneno perigoso e suas habilidades psíquicas permitem que ele paralise suas presas com um único olhar. Dracubat é temido por sua capacidade de confundir e paralisar suas vítimas antes de desferir seu golpe final. Habitante de cavernas escuras e florestas densas, Dracubat caça durante a noite, movendo-se nas sombras para capturar suas presas desavisadas.",
     ref: "Um famoso conde imortal que vive nas sombras, conhecido por sua sede por sangue.",
+    groups: ["orange"],
     tags: [],
     evolutions: [["035", "036"]],
     habitat: ["caverna", "floresta"],
@@ -573,6 +656,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Cunningcoil é um Geekmon singular, composto por duas criaturas rivais: uma cobra de gelo e uma raposa de fogo. Elas estão constantemente em conflito, mas, em situações de perigo, suas rivalidades são postas de lado para realizar ataques coordenados. A cobra usa sua frieza para imobilizar oponentes, enquanto a raposa age com velocidade explosiva, desferindo golpes decisivos, em perfeita sincronia. A união desses dois opostos cria uma estratégia quase imbatível.",
     ref: "Um mestre em táticas furtivas, habilidoso em se infiltrar e neutralizar oponentes sem ser detectado.",
+    groups: ["purple"],
     tags: [],
     evolutions: [["037"]],
     habitat: ["montanha", "caverna"],
@@ -587,6 +671,7 @@ export const geekmons: Geekmon[] = [
     description:
       'Pumpkin aparece com mais frequência na época de Halloween, flutuando pelas ruas ao anoitecer. Ele se diverte pregando sustos nas pessoas que ousam sair à noite. No entanto, se suas travessuras falharem, Pumpkin pode recompensar suas "vítimas" com doces, antes de desaparecer na escuridão. A lenda diz que quem come esses doces é amaldiçoado com pesadelos terríveis por sete noites consecutivas. Ninguém sabe de onde Pumpkin vem, mas sua conexão com a temporada de sustos é inegável.',
     ref: "Um espírito que adora assustar os outros e quer transformar o Natal em um verdadeiro Halloween.",
+    groups: ["yellow"],
     tags: [],
     evolutions: [["038", "039", "040"]],
     habitat: ["urbano", "caverna"],
@@ -601,6 +686,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Pumplet gosta de se refugiar em lugares mal-assombrados. Ele é capaz de criar densas névoas e ilusões sombrias que distorcem a percepção de seus visitantes, assustando qualquer um que se atreva a entrar em seu domínio. Para livrar um local das assombrações de um Pumplet, é necessário localizar a raiz de sua conexão com o ambiente. Normalmente, essa conexão está escondida em um objeto marcado por Pumplet. Somente destruindo esse objeto é possível banir Pumplet do local que assombra.",
     ref: "Um espírito que adora assustar os outros e quer transformar o Natal em um verdadeiro Halloween.",
+    groups: ["yellow"],
     tags: [],
     evolutions: [["038", "039", "040"]],
     habitat: ["urbano", "caverna"],
@@ -615,6 +701,7 @@ export const geekmons: Geekmon[] = [
     description:
       'Pumpking é um governante espectral que se autodenomina o "Rei do Pesadelo". Ele é conhecido por sua capacidade de invocar criaturas fantasmagóricas para assustar as pessoas. Seu objetivo é transformar o mundo em um reino de sustos eternos, onde o Halloween nunca acaba. Entretanto, Pumpking possui um código de honra: ele admira aqueles que enfrentam seus medos de frente e muitas vezes poupa os mais corajosos de seus piores sustos, reservando suas maiores assombrações para aqueles que tentam fugir.',
     ref: "Um espírito que adora assustar os outros e quer transformar o Natal em um verdadeiro Halloween.",
+    groups: ["yellow"],
     tags: [],
     evolutions: [["038", "039", "040"]],
     habitat: ["urbano", "caverna"],
@@ -629,6 +716,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Munchkey é um Geekmon curioso e travesso, conhecido por pregar peças nos viajantes desavisados. Suas asas ainda em desenvolvimento não o permitem voar, no entanto, sua falta de voo não o impede de ser extremamente ágil no solo, escalando árvores e penhascos com facilidade. Com suas garras afiadas, ele pode cavar buracos e mover pequenas rochas para fazer armadilhas simples. Apesar de sua natureza travessa, Munchkey demonstra uma inteligência surpreendente para resolver problemas.",
     ref: "Um fiel soldado alado, famoso por estar sempre ao lado de uma poderosa feiticeira.",
+    groups: ["gray"],
     tags: [],
     evolutions: [["041", "042"]],
     habitat: ["montanha", "floresta"],
@@ -643,6 +731,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Munchkong ostenta um par de asas poderosas que lhe possibilita voar grandes distâncias e patrulhar seu território. Sua visão aguçada permite detectar ameaças a quilômetros de distância, se movendo rapidamente para proteger seu grupo. Munchkong é altamente territorialista e ataca qualquer intruso que se aproxime. Munchkong mantém a malícia de seu estágio anterior, utilizando estratégias de guerrilha aérea para manter o controle de seu território. Ele é visto como o líder natural de seu grupo e é reverenciado por outros Munchkey.",
     ref: "Um fiel soldado alado, famoso por estar sempre ao lado de uma poderosa feiticeira.",
+    groups: ["gray"],
     tags: [],
     evolutions: [["041", "042"]],
     habitat: ["montanha", "floresta"],
@@ -657,6 +746,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Bucanape é conhecido por sua habilidade elástica incomum, capaz de esticar partes do corpo para alcançar inimigos ou se esquivar rapidamente. Sua personalidade alegre e despreocupada o torna popular entre outros Geekmon, mas ele também é incrivelmente destemido, enfrentando qualquer oponente sem hesitar. Bucanape gera eletricidade estática ao se esfregar rapidamente, e sua pele elástica o protege contra choques e golpes diretos.",
     ref: "Um aventureiro alegre e elástico que sonha em explorar o mundo e se tornar o rei dos piratas.",
+    groups: ["orange"],
     tags: [],
     evolutions: [["043"]],
     habitat: ["urbano", "praia"],
@@ -672,6 +762,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Zapstrum é um Geekmon cheio de energia, com cabelos que brilham com eletricidade estática. Onde quer que vá, ele carrega consigo sua energia e é conhecido por produzir melodias eletrizantes que ecoam no ar. Ele usa suas habilidades musicais para motivar aliados ou desestabilizar adversários, liberando descargas elétricas a cada acorde. Embora seja travesso, Zapstrum é um espírito livre, sempre pronto para sua próxima performance.",
     ref: "Um guitarrista lendário, famoso por seus solos eletrizantes e sua presença marcante no palco, sempre com sua cartola.",
+    groups: ["gray"],
     tags: [],
     evolutions: [["044", "045", "046"]],
     habitat: ["urbano", "deserto"],
@@ -686,6 +777,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Voltariff é um prodígio da guitarra. Seus solos são capazes de gerar ondas de energia elétrica que paralisam seus adversários. Sua guitarra é amplificada por seu próprio poder elétrico e ele usa sua música para liderar tanto em batalha quanto nos palcos. Seu carisma magnético o torna popular em todos os lugares e sua atitude ousada garante que ele nunca fique de fundo no desfile.",
     ref: "Um guitarrista lendário, famoso por seus solos eletrizantes e sua presença marcante no palco, sempre com sua cartola.",
+    groups: ["gray"],
     tags: [],
     evolutions: [["044", "045", "046"]],
     habitat: ["urbano", "deserto"],
@@ -700,6 +792,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Thunderslash é uma verdadeira lenda viva do rock. Suas apresentações são incendiárias — literalmente! Seus solos de guitarra são tão poderosos que transformam sua guitarra em um lança-chamas. Ele é conhecido por ser o 'Deus do Rock' entre os Geekmons, com uma atitude feroz e uma energia explosiva. Seus shows são eventos épicos, onde ele incendeia com emoção os corações de quem está no palco e as emoções de todos ao seu redor.",
     ref: "Um guitarrista lendário, famoso por seus solos eletrizantes e sua presença marcante no palco, sempre com sua cartola.",
+    groups: ["gray"],
     tags: [],
     evolutions: [["044", "045", "046"]],
     habitat: ["urbano", "deserto"],
@@ -714,6 +807,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Apesar de sua aparência incomum, Eyeball é um Geekmon carismático e muito curioso, adorando seguir qualquer ser que passe por perto. Ele libera pequenas faíscas de fogo ao redor de seu corpo quando se sente intimidado e seu comportamento é geralmente amistoso e brincalhão. Seus movimentos são rápidos e ágeis, tornando difícil para outros Geekmons entenderem para onde ele está se movendo, especialmente quando estão sendo observados.",
     ref: "Uma criatura flutuante com muitos olhos, conhecida por seu poder destrutivo e habilidades mágicas.",
+    groups: ["blue"],
     tags: [],
     evolutions: [["047", "048"]],
     habitat: ["floresta", "caverna"],
@@ -728,6 +822,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Eyewatcher observa tudo ao seu redor com seus olhos capazes de disparar fogo e raios psíquicos. Ao contrário de sua forma anterior, Eyewatcher prefere a solidão, se isolando em pântanos sombrios e raramente sendo avistado, onde vigia silenciosamente qualquer intruso que se aproxime. Ele possui uma personalidade defensiva e raramente busca o contato com humanos. Extremamente territorialista, Eyewatcher se destaca por sua vigilância constante e ataques implacáveis a qualquer um que se aproxime.",
     ref: "Uma criatura flutuante com muitos olhos, conhecida por seu poder destrutivo e habilidades mágicas.",
+    groups: ["blue"],
     tags: [],
     evolutions: [["047", "048"]],
     habitat: ["floresta", "caverna"],
@@ -742,6 +837,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Mermelody gosta de se balançar em sua mina submarina enquanto canta. Sua voz melodiosa cativa tanto treinadores quanto outros Geekmons, que frequentemente se reúnem ao seu redor para ouvir suas canções. Sua voz possui um poder curativo, capaz de restaurar a saúde de seres feridos. É comum vê-la à beira de rios e locais destruídos pelos seres humanos. Os habitats de Mermelody são sempre povoados e cheios de vida.",
     ref: "Uma cantora pop famosa por se balançar sobre uma grande bola de demolição.",
+    groups: ["gray"],
     tags: [],
     evolutions: [["049", "050"]],
     habitat: ["água"],
@@ -756,6 +852,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Ao evoluir, a mina submarina da qual Mermelody se agarra funde-se ao seu corpo. Com isso, Abyssong passa a habitar as profundezas do oceano. Seu canto gracioso se transforma em uma melodia hipnótica, capaz de ecoar até a superfície e seduzir suas presas para a escuridão das profundezas. Diversas lendas sobre o desaparecimento de aventureiros dos oceanos cercam Abyssong, conhecida este Geekmon conhecido como a bruxa do mar.",
     ref: "Uma cantora pop famosa por se balançar sobre uma grande bola de demolição.",
+    groups: ["gray"],
     tags: [],
     evolutions: [["049", "050"]],
     habitat: ["água"],
@@ -770,6 +867,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Snabul adora morder tudo o que vê pela frente. Seu casaco de pelo espesso o mantém aquecido mesmo nos ambientes mais gélidos, tornando-o um sobrevivente nato em climas extremos. Snabuls costumam viver em bandos, e por isso sempre que aparecem em confronto a força de suas mordidas aumenta ao brigar com outros de sua espécie. No entanto, Snabul é bastante dócil com humanos, e tende a ter mordidas muito mais agressivas, apenas ao defender a si ou sua força equivalente.",
     ref: "Uma criatura que habita um mundo digital, conhecida por se aventurar com seus amigos na busca de salvar o mundo.",
+    groups: ["orange"],
     tags: [],
     evolutions: [["051", "052"]],
     habitat: ["neve", "montanha"],
@@ -784,6 +882,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Os bandos de Snabuls são liderados por um único Weresnow, que cuida de seus membros, protegendo-os de predadores e ensinando-os a sobreviver, até que eles evoluam e passem a trilhar seus próprios caminhos. As placas de pedra e garras afiadas de seu corpo são armas imponentes na disputa de poder entre os Weresnows, que estão em constante conflito pelos melhores locais da região de neve. A rivalidade entre Weresnows pode ser brutal, com batalhas intensas frequentemente levando o derrotado à morte.",
     ref: "Uma criatura que habita um mundo digital, conhecida por se aventurar com seus amigos na busca de salvar o mundo.",
+    groups: ["orange"],
     tags: [],
     evolutions: [["051", "052"]],
     habitat: ["neve", "montanha"],
@@ -798,6 +897,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Carnigon se esconde entre a vegetação das florestas densas e na escuridão das cavernas, aguardando o momento certo para capturar suas presas. Embora possa se mover usando suas raízes e caules, Carnigon prefere permanecer imóvel, camuflado, e atacar por emboscada. Com sua mandíbula principal, ele enrola a vítima com suas vinhas, fixando-se por elas e sugando para drenar as energias vitais de sua vítima.",
     ref: "Uma criatura monstruosa vinda de um mundo invertido, famosa em série ambientada nos anos 80.",
+    groups: ["yellow"],
     tags: [],
     evolutions: [["053"]],
     habitat: ["floresta", "caverna"],
@@ -812,6 +912,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Clownit é um Geekmon travesso que adora pregar peças em humanos e outros Geekmons. Ele sempre carrega consigo um Mileemon transformado como seu balão, trocando por outro sempre que achar um que goste mais. Suas brincadeiras muitas vezes revelam um lado sombrio desse Geekmon. Diz-se que, quando irritado, suas piadas aparentemente inofensivas podem se tornar perigosas.",
     ref: "Um palhaço maligno de um mundo sombrio, conhecido por se alimentar do medo das crianças.",
+    groups: ["purple"],
     tags: [],
     evolutions: [["054", "055"]],
     habitat: ["urbano", "floresta"],
@@ -826,6 +927,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Oniclown possui um rosto de palhaço assustador e seu riso sinistro ecoa pelas ruas desertas ao cair da noite. Ele tem um fascínio estranho por acumular balões de Mileemon, estourando-os quando se cansa deles. Oniclown só aparece nas horas mais inesperadas, onde seu comportamento é guiado por um impulso perturbador de aterrorizar o mundo onde pisa. Suas aparições são cercadas de lendas e muitos evitam as áreas onde ele pode estar presente.",
     ref: "Um palhaço maligno de um mundo sombrio, conhecido por se alimentar do medo das crianças.",
+    groups: ["purple"],
     tags: [],
     evolutions: [["054", "055"]],
     habitat: ["urbano", "floresta"],
@@ -840,6 +942,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Essa dupla alegre adora passar seus dias dançando com uma energia contagiante. Suas habilidades místicas permitem enfeitiçar o ambiente ao seu redor, tornando qualquer lugar que visitam um verdadeiro espetáculo carnavalesco. Carnaduo é conhecido por improvisar músicas durante os temas encontrados em suas aventuras, sempre exibindo sua criatividade para impressionar os outros.",
     ref: "Um feriado vibrante e colorido, onde a dança e celebração são uma expressão de pura alegria.",
+    groups: ["blue"],
     tags: [],
     evolutions: [["056"]],
     habitat: ["urbano", "campo"],
@@ -854,6 +957,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Hyro é um pequeno Geekmon com um grande espírito aventureiro. Embora inicialmente pareça um Geekmon simples, seu verdadeiro potencial reside em sua habilidade de usar máscaras especiais. Quando equipado com uma dessas máscaras, Hyro pode evoluir em várias formas, ganhando novos poderes e habilidades. Mesmo quando retorna à sua forma original, removendo sua máscara e seus poderes evolutivos, ele não deixa de ser um desafiador corajoso de tudo que encontra pela frente.",
     ref: "Um herói conhecido por utilizar máscaras e outros artefatos mágicos para solucionar quebra-cabeças e superar calabouços.",
+    groups: ["yellow"],
     tags: [],
     evolutions: [
       ["057", "058"],
@@ -872,6 +976,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Quando Hyro se equipa com uma máscara aquática, ele se transforma em Sirenian, um Geekmon gracioso e ágil. Suas nadadeiras permitem que ele se mova silenciosamente debaixo d’água, tornando-o excelente em criar emboscadas. É em harmonia com sua profunda conexão com os oceanos, sendo capaz de manipular a água ao seu redor e usá-la tanto para atacar quanto para proteger seus aliados. Seu comportamento tranquilo esconde uma força impressionante quando está em seu habitat natural.",
     ref: "Um herói conhecido por utilizar máscaras e outros artefatos mágicos para solucionar quebra-cabeças e superar calabouços.",
+    groups: ["yellow"],
     tags: [],
     evolutions: [["057", "058"]],
     habitat: ["água"],
@@ -886,6 +991,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Equipando Hyro com uma máscara florestal, ele evolui para Nutian, um Geekmon em sintonia com o ambiente vegetal ao seu redor. Nutian possui a incrível habilidade de controlar plantas, invocando raízes e cipós, e sendo capaz de disparar nozes de sua flor para proteger seus amigos ou atacar seus adversários. Ele é um guardião das florestas, camuflando-se facilmente entre as folhagens, possuindo uma resistência natural contra os perigos desse ambiente.",
     ref: "Um herói conhecido por utilizar máscaras e outros artefatos mágicos para solucionar quebra-cabeças e superar calabouços.",
+    groups: ["yellow"],
     tags: [],
     evolutions: [["057", "059"]],
     habitat: ["floresta"],
@@ -900,6 +1006,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Hyro, quando equipado com uma máscara terrestre, se transforma em Drillian, uma evolução resistente e poderosa. Seu corpo rochoso oferece uma forte defesa contra ataques físicos, tornando-o uma muralha quase impenetrável. Drillian é frequentemente encontrado em terrenos rochosos, usando sua força para moldar e modelar o ambiente à sua vontade. Seus golpes podem esmagar pedras, abrindo caminho para seus aliados.",
     ref: "Um herói conhecido por utilizar máscaras e outros artefatos mágicos para solucionar quebra-cabeças e superar calabouços.",
+    groups: ["yellow"],
     tags: [],
     evolutions: [["057", "060"]],
     habitat: ["montanha"],
@@ -914,6 +1021,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Milemoon é um Geekmon muito brincalhão, conhecido por sua habilidade única de reconstituir seu corpo na forma que desejar. Ele é capaz de se transformar em outros Geekmons, copiando não só sua aparência, mas também suas habilidades. Quando não está imitando outros modelos, Milemoon assume formas de pequenos animais para ganhar a confiança dos humanos e brincar com eles.",
     ref: "Uma bexiga canudo, sempre pronta para mudar de forma e alegrar todos à sua volta.",
+    groups: ["purple", "orange"],
     tags: [],
     evolutions: [["061"]],
     habitat: ["urbano", "campo"],
@@ -928,6 +1036,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Bombroci possui um temperamento explosivo – literalmente. Ele possui três raízes que produzem bombas, que são lançadas para afastar qualquer invasor que se aproxime de seu território. Após lançar uma bomba, a raiz é enterrada novamente e leva 24 horas para produzir uma nova. Apesar de seu tamanho, Bombroci é altamente agressivo, conhecido por proteger seu território com afinco de qualquer coisa que tente se aproximar.",
     ref: "Uma planta nervosa, conhecida por defender seu território com afinco de hordas de zumbis.",
+    groups: ["gray"],
     tags: [],
     evolutions: [["062"]],
     habitat: ["campo", "montanha"],
@@ -942,6 +1051,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Slasher é um Geekmon feroz, conhecido por suas garras extremamente afiadas que podem cortar praticamente qualquer obstáculo em seu caminho. Ele é um combatente incansável que nunca foge de uma batalha. Além de sua natureza agressiva, Slasher possui um notável poder de regeneração, que o torna um oponente difícil de ser derrotado mesmo após combates intensos. Embora seja hostil com ameaças, é admirado por sua lealdade inabalável, indo até o fim para proteger aqueles de quem se aproxima.",
     ref: "Um mutante indomável, conhecido por suas garras retráteis e capacidade regenerativa surpreendente.",
+    groups: ["blue"],
     tags: [],
     evolutions: [["063"]],
     habitat: ["deserto", "floresta"],
@@ -956,6 +1066,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Ragnawolf possui uma pelagem que brilha como relâmpago e emana um calor intenso em combates. Habita regiões geladas e montanhosas, onde sua presença é temida pelos adversários. Ele é capaz de manipular energia elétrica, além de habilidades de combate intensas com garras ardentes. Com uma personalidade leal, Ragnawolf é muitas vezes visto como um símbolo de destruição e renovação.",
     ref: "Um lobo temido por seu poder devastador, destinado a romper as correntes que prendem durante o Ragnarok.",
+    groups: ["yellow"],
     tags: [],
     evolutions: [["064"]],
     habitat: ["neve", "montanha"],
@@ -970,6 +1081,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Glitchingno é um Geekmon anômalo, famoso por sua forma distorcida. Sua aparência parece ser um erro, como se ele tivesse sido puxado de outra dimensão. Com um corpo que constantemente cintila em padrões desordenados de pixels e energia elétrica, ele é capaz de desestabilizar os dispositivos tecnológicos ao seu redor. Glitchingno geralmente é visto aparecendo principalmente em áreas costeiras ou águas profundas após eventos misteriosos, como tempestades magnéticas ou falhas temporais.",
     ref: "Um famoso glitch, que interfere nas regras do mundo e é conhecido por duplicar itens e criar falhas inesperadas no sistema.",
+    groups: ["brown"],
     tags: [],
     evolutions: [["065"]],
     habitat: ["praia", "água"],
@@ -984,6 +1096,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Crawling é um Geekmon extremamente curioso, atraído por qualquer movimento. Ele se move silenciosamente pelo terreno árido e arenoso do deserto, muitas vezes sendo confundido com uma rocha. Quando percebe algo se movendo, seu comportamento se modifica e o impulsiona a se aproximar, surpreendendo aqueles que se notam de repente ao seu lado. Sua natureza é completamente inofensiva.",
     ref: "Um monstro famoso por explodir quando chega perto de jogadores, causando grande destruição.",
+    groups: ["purple"],
     tags: [],
     evolutions: [["066", "067", "068"]],
     habitat: ["deserto", "montanha"],
@@ -998,6 +1111,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Crawler desenvolveu uma característica peculiar ao evoluir: sua tendência explosiva. Ao detectar movimento, seu corpo começa a emitir uma vibração que cresce até ele se tornar uma verdadeira bomba ambulante. Ele se aproxima lentamente de seus alvos, e ao chegar perto o suficiente, explode com danos sérios ao seu redor. Embora não seja um Geekmon naturalmente agressivo, seu comportamento explosivo o torna imprevisível, forçando os treinadores a manterem distância.",
     ref: "Um monstro famoso por explodir quando chega perto de jogadores, causando grande destruição.",
+    groups: ["purple"],
     tags: [],
     evolutions: [["066", "067", "068"]],
     habitat: ["deserto", "montanha"],
@@ -1012,6 +1126,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Behecrawl move-se lentamente, mas sua letalidade não está em sua velocidade. Capaz de destruir cubos explosivos ao seu redor com uma força impressionante, causando destruição em grandes áreas ao redor. Seu corpo emite uma constante descarga elétrica, tornando-o perigoso para qualquer um que se aproxime demais. Cada movimento seu pode desencadear uma explosão ainda maior, e quando ameaçado, Behecrawl não hesita em transformar o campo de batalha em um verdadeiro caos.",
     ref: "Um monstro famoso por explodir quando chega perto de jogadores, causando grande destruição.",
+    groups: ["purple"],
     tags: [],
     evolutions: [["066", "067", "068"]],
     habitat: ["deserto", "montanha"],
@@ -1026,6 +1141,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Lingon é um jovem dragão pequeno e ágil com uma curiosidade quase insaciável. Seus grandes olhos brilhantes nunca deixam passar nada despercebido e ele está sempre explorando o mundo com entusiasmo. Embora suas asas ainda não sejam suficientes para voar, Lingon nunca foge de uma boa aventura, deslizando pelos terrenos e se camuflando com maestria. Apesar de afetuoso, suas pequenas garras afiadas estão sempre prontas para se defender.",
     ref: "Um dragão da noite que revolucionou o mundo viking junto com seu desengonçado companheiro humano.",
+    groups: ["orange"],
     tags: [],
     evolutions: [["069", "070", "071"]],
     habitat: ["floresta", "montanha"],
@@ -1040,6 +1156,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Stargon desliza pelos céus da noite, onde seus olhos penetrantes são a única pista de sua presença. Ele paira silenciosamente sobre paisagens à luz das estrelas, atento a cada movimento abaixo. Sua figura elegante projeta um rastro de sombras, confundindo os inimigos e envolvendo-os em breves momentos de escuridão total. Misterioso e calculista, Stargon prefere observar seus alvos antes de estudar seus alvos, sempre usando a escuridão a seu favor.",
     ref: "Um dragão da noite que revolucionou o mundo viking junto com seu desengonçado companheiro humano.",
+    groups: ["orange"],
     tags: [],
     evolutions: [["069", "070", "071"]],
     habitat: ["floresta", "montanha"],
@@ -1054,6 +1171,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Novagon é um dragão majestoso, capaz de transformar o dia em noite ao estender suas asas. Suas chamas escuras, tingidas de tons arroxeados, queimam com uma fúria inconsolável, capazes de derreter até as rochas mais resistentes. Apesar de seu poder destrutivo, Novagon é incrivelmente inteligente, preferindo medir cada movimento antes de liberar sua fúria. Quando Novagon entra em cena, o mundo parece parar em um silêncio aterrorizante, como um prenúncio da devastação que está por vir.",
     ref: "Um dragão da noite que revolucionou o mundo viking junto com seu desengonçado companheiro humano.",
+    groups: ["orange"],
     tags: [],
     evolutions: [["069", "070", "071"]],
     habitat: ["floresta", "montanha"],
@@ -1068,6 +1186,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Madabyss jaz nas profundezas abissais, onde a luz não consegue alcançá-lo. Envolto por uma aura de escuridão intensa, é capaz de instilar um estado de terror absoluto em qualquer um que ouse encará-lo. Seus olhos, raros, já são o suficiente para paralisar os que sobrevivem para contar a história. Lendas abissais o tratam como uma entidade ancestral que transcende o tempo, com um poder capaz de distorcer o tecido da realidade.",
     ref: "Uma entidade cósmica que jaz nas profundezas, cuja mera presença é capaz de enlouquecer os mortais.",
+    groups: ["gray"],
     tags: ["legendary"],
     evolutions: [["072"]],
     habitat: ["água"],
@@ -1082,6 +1201,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Ptoracto é o soberano absoluto dos desertos, habitando uma fortaleza natural oculta nas dunas, cercada por uma eterna tempestade de areia. Apenas aqueles que conhecem sua localização exata conseguem alcançar seu domínio, protegido por ventos impiedosos e grãos de areia cortantes. Sua presença nos desertos é vista como um presságio de perigo, e raramente alguém sai ileso ao tentar desafiá-lo em seu território.",
     ref: "Uma criatura dos mitos medievais, muitas vezes confundida com um dragão.",
+    groups: ["yellow"],
     tags: ["legendary"],
     evolutions: [["073"]],
     habitat: ["deserto"],
@@ -1096,6 +1216,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Murpia vive no coração das florestas, onde atua como guardiã sagrada da fauna e da flora. Seu corpo emana uma energia vital que fortalece a vida ao seu redor, permitindo que as plantas floresçam e os seres prosperem. Quando Murpia emerge de sua longa vida, o mundo se enche de rara beleza desabrochada. Com uma fúria de leoa e o intelecto nobre de uma águia, Murpia protege sua floresta com justiça e propósito. Esse fenômeno faz de Murpia o coração pulsante das florestas, simbolizando o eterno ciclo da vida.",
     ref: "Uma criatura com a majestade de um leão e a sabedoria de uma águia. Mascote da editora por trás do universo Geekmon.",
+    groups: ["purple"],
     tags: ["legendary"],
     evolutions: [["074"]],
     habitat: ["floresta"],
@@ -1110,6 +1231,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Zodyarmor é uma criatura alada formada por armaduras resplandecentes, guardiã da região e protetora dos humanos. Mascote oficial da Confederação Geekmon, ele é reverenciado como o defensor da nação. Suas estátuas, espalhadas pelas grandes metrópoles, são um símbolo de segurança e força. Ocasionalmente, Zodyarmor pode ser visto sobrevoando as cidades, vigiando os humanos e Geekmons que precisam de ajuda.",
     ref: "Uma lendária armadura que responde apenas àqueles com o coração puro, concedendo-lhe poderes celestiais.",
+    groups: ["brown"],
     tags: ["legendary"],
     evolutions: [["075"]],
     habitat: ["urbano"],
@@ -1124,6 +1246,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Vindo das profundezas do cosmos, Skylord tem um único propósito: subjugar planetas e dominar suas civilizações. Seu domínio sobre forças elétricas, aliado às suas lâminas retráteis de luz fluida, o torna uma força devastadora. Constantemente em conflito com Zodyarmor, Skylord representa o lado sombrio da balança cósmica. Onde Zodyarmor é a luz que protege, Skylord é a escuridão que consome.",
     ref: "Um icônico comandante de um império distante, cuja presença inspira tanto medo quanto obediência cega.",
+    groups: ["orange"],
     tags: ["legendary"],
     evolutions: [["076"]],
     habitat: ["urbano"],
@@ -1138,6 +1261,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Relatos sobre Nianpurll são extremamente raros, levando muitos a acreditar que ele seja apenas um mito. Os poucos relatos existentes mencionam que seu corpo parece nadar no ar, deixando rastros cintilantes enquanto desliza suavemente pelas brisas costeiras. Esse Geekmon parece adorar a maresia, tendo sido este o único local do qual foi avistado até o momento. Relatos antigos dizem que aqueles que avistaram Nianpurll foram abençoados com boa sorte.",
     ref: "Uma adorável criaturinha conhecida por voar pelo espaço, deixando rastros coloridos de arco-íris por onde passa.",
+    groups: ["blue"],
     tags: ["legendary"],
     evolutions: [["077"]],
     habitat: ["praia"],
@@ -1196,6 +1320,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Dicedin é um Geekmon pequeno, no qual cada uma de suas face cintila com uma leve aura mágica. Ele é uma criatura curiosa e inocente que sonha em ser um grande mago, como aqueles das histórias de fantasia que adora imaginar. Embora sua habilidade mágica seja instável, Dicedin é capaz de lançar feitiços tanto de fogo quanto de gelo, variando de acordo com seu humor. Seus poderes, no entanto, parecem estar ligados ao acaso, com efeitos imprevisíveis que o tornam tanto adorável quanto perigoso.",
     ref: "Um dado de muitos lados, símbolo máximo de jogos de ação e aventura onde a imaginação é a principal magia.",
+    groups: ["green"],
     tags: [],
     evolutions: [["081"]],
     habitat: ["neve", "montanha"],
@@ -1210,6 +1335,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Tortiga é uma criaturinha aquática alegre, conhecida por sua curiosidade e seu amor por explorar as águas serenas dos lagos. Sempre à procura de novos lugares para nadar, ela adora mergulhar nas profundezas e brincar com os peixes. Tortiga tem uma personalidade amistosa e é particularmente protetiva com aqueles que considera amigos, usando seus poderes místicos para acalmar as águas ao seu redor. Quando se sente em perigo, Tortiga desaparece na neblina, deixando apenas o reflexo da lua sobre as águas calmas.",
     ref: "Uma criatura criptídea, famosa por desaparecer nas profundezas de lagos. Personagem crossover de Zenkai Adventure.",
+    groups: ["pink"],
     tags: [],
     evolutions: [["082", "083"]],
     habitat: ["água"],
@@ -1224,6 +1350,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Torterror é uma majestosa criatura aquática, temida e respeitada por seu tamanho e força. Seu casco é enorme e resistente, grande o suficiente para transportar humanos em travessias aquáticas. Apesar de seu grande porte, Torterror é uma criatura tranquila, preferindo nadar pacificamente pelos lagos profundos e misteriosos. Seu poder místico permite manipular as águas ao seu redor, criando neblinas densas que escondem sua presença.",
     ref: "Uma criatura criptídea, famosa por desaparecer nas profundezas de lagos. Personagem crossover de Zenkai Adventure.",
+    groups: ["pink"],
     tags: [],
     evolutions: [["082", "083"]],
     habitat: ["água"],
@@ -1238,6 +1365,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Bubblesponge é conhecido por sua personalidade otimista e enérgica. Ele vive no fundo do oceano e usa seu corpo poroso para absorver toxinas da água, purificando seu ambiente. Ele adora soprar bolhas nas mais variadas formas para se divertir, sendo extremamente habilidoso em criar bolhas no formato de outros Geekmons. Dizem que suas risadas borbulhantes alegram até os Geekmons mais mal-humorados.",
     ref: "O morador mais alegre e esponjoso do fundo do mar, conhecido por ser um grande mestre cuca.",
+    groups: ["green"],
     tags: [],
     evolutions: [["084"]],
     habitat: ["praia", "água"],
@@ -1252,6 +1380,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Puppyloo é um Geekmon enérgico, sempre pronto para uma boa briga, não importa o quão arriscada seja. Com um corpo camuflado que se funde perfeitamente às matas densas, ele se torna quase imperceptível até que seja tarde demais. Sua disposição corajosa e ousada o faz avançar sem pensar duas vezes, mas essa coragem muitas vezes o coloca em situações complicadas. Mesmo assim, Puppyloo nunca foge de um desafio.",
     ref: "Um jovem cão, sempre pronto para entrar em ação, mesmo sem saber calcular os riscos.",
+    groups: ["pink"],
     tags: [],
     evolutions: [["085", "086"]],
     habitat: ["floresta", "campo"],
@@ -1266,6 +1395,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Quando Puppyloo é derrotado em um único golpe ele evolui para Bushdoo, tornando-se surpreendentemente tímido e cauteloso. O arbusto em suas costas oferece um esconderijo perfeito, agindo como uma barreira natural extremamente resistente e permitindo com que ele se proteja e se recupere em momentos de perigo. Esta característica torna Bushdoo um grande defensor em combate, no qual mesmo assustado, Bushdoo sabe como proteger seus amigos com uma coragem silenciosa.",
     ref: "Um cão detetive famoso por ser um grande medroso e adorar comer junto com seu melhor amigo.",
+    groups: ["pink"],
     tags: [],
     evolutions: [["085", "086"]],
     habitat: ["campo", "floresta"],
@@ -1280,6 +1410,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Ratknight, o Vigilante das Sombras, patrulha a noite com uma determinação feroz e sentidos aguçados. Movendo-se furtivamente pelos becos escuros, ele é conhecido por sua habilidade de desaparecer na escuridão, tornando-se praticamente indetectável. Seus poderosos golpes e sua agilidade fazem dele um defensor implacável dos mais fracos. Ratknight possui um forte senso de justiça e não descansa até que a ordem seja restaurada em seu território. Sua postura intimidadora deixa uma marca nos corações dos inimigos.",
     ref: "Um herói mascarado, famoso por operar nas sombras para garantir a justiça e a segurança.",
+    groups: ["pink"],
     tags: [],
     evolutions: [["087"]],
     habitat: ["caverna", "urbano"],
@@ -1294,6 +1425,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Voltrio é um Geekmon que vive em grupo de três irmãos, cada um com uma personalidade distinta e uma coloração luminosa que reflete sua energia: vermelho com sua alegria contagiante, azul com sua calma serena e verde com sua inveja invocada. Juntos, eles geram pequenas correntes elétricas que estalam ao seu redor enquanto correm, iluminando as bolinhas presentes em seu corpo. Conhecidos por sua natureza travessa, esses três estão sempre brincando, criando eletricidade estática por onde passam.",
     ref: "Três esquilos animados, conhecidos por suas aventuras caóticas e performances musicais.",
+    groups: ["pink"],
     tags: [],
     evolutions: [["088", "089", "090"]],
     habitat: ["campo", "floresta"],
@@ -1308,6 +1440,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Ao evoluírem para Zapbros, a briga entre os irmãos passa a ser constante, em uma disputa para decidir quem será o líder do grupo. Esta disputa interna e o choque entre seus conflitos gera poderosas faíscas, que podem eletrocutar todo o campo de batalha, fazendo deles uma equipe surpreendentemente eficaz, mesmo em meio às suas desavenças.",
     ref: "Três esquilos animados, conhecidos por suas aventuras caóticas e performances musicais.",
+    groups: ["pink"],
     tags: [],
     evolutions: [["088", "089", "090"]],
     habitat: ["campo", "floresta"],
@@ -1322,6 +1455,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Quando a rivalidade entre eles atinge seu auge, o irmão dominante absorve a energia dos outros dois, crescendo imensamente, e passa a carregar seus irmãos em suas costas. Essa intensa absorção de energia reage dentro deste Geekmon, dando origem a um novo poder de fogo. Agora, eles utilizam uma combinação de ataques elétricos e flamejantes para defender uns aos outros, mesmo em meio à confusão que eles se inserem.",
     ref: "Três esquilos animados, conhecidos por suas aventuras caóticas e performances musicais.",
+    groups: ["pink"],
     tags: [],
     evolutions: [["088", "089", "090"]],
     habitat: ["campo", "floresta"],
@@ -1336,6 +1470,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Sandiranha desliza pelas dunas com incrível velocidade, deixando rastros de areia por onde passa. Apesar de ser uma piranha terrestre, seus ataques são tão ferozes quanto os de seus parentes aquáticos. Com presas poderosas e uma capacidade natural de gerar eletricidade, ela morde e eletrocuta suas presas com extrema ferocidade. Viajando sozinha é extremamente perigosa, mas sua verdadeira ameaça surge quando se junta com outras de sua espécie.",
     ref: "Um famoso filme sobre tornados cheios de predadores aquáticos inesperados causando caos e destruição.",
+    groups: ["green"],
     tags: [],
     evolutions: [["091", "092"]],
     habitat: ["deserto"],
@@ -1350,6 +1485,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Quando um grupo de Sandiranhas se une, eles evoluem para Sandinado, um terrível tornado de areia repleto de criaturas elétricas furiosas. O poder gerado por este fenômeno devastador é suficiente para destruir qualquer coisa em seu caminho, levantando toneladas de areia e gerando tempestades elétricas por onde passa. Não há escapatória quando Sandinado se aproxima, pois ele engole tudo em sua rota. Sua combinação de força bruta e eletricidade o torna um dos fenômenos naturais mais temidos no deserto.",
     ref: "Um famoso filme sobre tornados cheios de predadores aquáticos inesperados causando caos e destruição.",
+    groups: ["green"],
     tags: [],
     evolutions: [["091", "092"]],
     habitat: ["deserto"],
@@ -1364,6 +1500,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Susrock vive em constante vigilância. Sua carapaça de pedra, parecida com um traje espacial, protege as joias valiosas em seu corpo, tornando-o extremamente desconfiado. Ele acredita que outros de sua espécie estão sempre à espreita tramando algo contra ele, por isso permanece cauteloso e alerta. Com uma habilidade nata de se esconder e observar, Susrock raramente é pego de surpresa, permanecendo sempre um passo à frente de qualquer ameaça potencial.",
     ref: "Um grupo de tripulantes espaciais, sempre desconfiados de quem pode ser o impostor em sua missão.",
+    groups: ["green"],
     tags: [],
     evolutions: [["093", "094"]],
     habitat: ["montanha", "caverna"],
@@ -1378,6 +1515,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Após derrotar outro de sua espécie, Susrock evolui para Impostone. Nesse processo, sua carapaça se rompe, revelando sua verdadeira forma. As joias que adornam seu corpo se transformam em pontas afiadas, e sua desconfiança se transforma em pura agressividade. Impostone ataca qualquer um que se aproxime, determinado a proteger suas preciosidades a todo custo. Agora, não há mais dúvidas sobre sua natureza traiçoeira e perigosa.",
     ref: "Um grupo de tripulantes espaciais, sempre desconfiados de quem pode ser o impostor em sua missão.",
+    groups: ["green"],
     tags: [],
     evolutions: [["093", "094"]],
     habitat: ["montanha", "caverna"],
@@ -1392,6 +1530,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Tardmol é um Geekmon famoso por sua incrível resiliência e habilidade de prosperar em condições extremas. Com um corpo compacto e pele grossa, ele é virtualmente imune a condições adversas, seja no fundo de cavernas escuras ou nas profundezas dos lagos. Lendas dizem que ele veio à Terra em um meteoro, o que reforça sua aura de mistério. Tímido e cauteloso, Tardmol prefere evitar conflitos, mas surpreende com sua força quando encurralado, usando sua inteligência para escapar de situações difíceis.",
     ref: "Uma pequena criatura alienígena que encontrou sua verdadeira família na Terra.",
+    groups: ["green"],
     tags: [],
     evolutions: [["095", "096", "097"]],
     habitat: ["caverna", "água"],
@@ -1406,6 +1545,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Ottermol exibe uma cauda de pedra resistente, que usa tanto para cavar quanto para combate. Ottermol adora nadar, seja em rios ou até mesmo no ar, graças à sua habilidade de flutuar. Sua personalidade é brincalhona, mas também curiosa, com uma vontade insaciável de explorar e conhecer o mundo ao seu redor. Embora sua aparência seja inocente, Ottermol possui uma impressionante força de escavação e é um excelente estrategista quando pressionado em batalha.",
     ref: "Uma pequena criatura alienígena que encontrou sua verdadeira família na Terra.",
+    groups: ["green"],
     tags: [],
     evolutions: [["095", "096", "097"]],
     habitat: ["caverna", "água"],
@@ -1420,6 +1560,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Hamotter possui uma cauda de pedra massiva, capaz de perfurar qualquer terreno. Ele também carrega uma marreta espacial, que usa para quebrar as rochas mais resistentes. Apesar de sua força esmagadora, Hamotter mantém um comportamento brincalhão. No entanto, seu senso de proteção com seus amigos é inabalável, e ele se torna um defensor feroz contra qualquer ameaça.",
     ref: "Uma pequena criatura alienígena que encontrou sua verdadeira família na Terra.",
+    groups: ["green"],
     tags: [],
     evolutions: [["095", "096", "097"]],
     habitat: ["caverna", "água"],
@@ -1434,6 +1575,7 @@ export const geekmons: Geekmon[] = [
     description:
       'Flamereaper habita o coração das cavernas mais profundas, onde magma e rochas se entrelaçam formando seu palácio. Ele é o guardião dos portões que conduzem ao submundo, zelando pelo equilíbrio entre os reinos. Contudo, Flamereaper tem uma ambição latente: conquistar o "mundo superior" e governar tanto sobre os vivos quanto sobre os mortos. Porém, sempre que tenta emergir para a superfície, sua investida é barrada por Lemurkin.',
     ref: "Um soberano do submundo determinado a expandir seu poder além dos domínios que guarda nas profundezas.",
+    groups: ["pink"],
     tags: ["legendary"],
     evolutions: [["098"]],
     habitat: ["caverna"],
@@ -1448,6 +1590,7 @@ export const geekmons: Geekmon[] = [
     description:
       'Lemurkin é o protetor do "mundo superior", sendo reverenciado pelos habitantes das planícies e campos. Seu templo, erguido em meio aos campos verdejantes pelos habitantes locais, é um símbolo de esperança e segurança para o povo local. Lemurkin patrulha o céu em sua nuvem dourada, vigiando com zelo o mundo natural, para garantir que Flamereaper não escape das profundezas para dominar a superfície.',
     ref: "Um guerreiro com uma força extraordinária, capaz de alcançar novas formas de poder conforme enfrenta ameaças maiores.",
+    groups: ["green"],
     tags: ["legendary"],
     evolutions: [["099"]],
     habitat: ["campo"],
@@ -1532,6 +1675,7 @@ export const geekmons: Geekmon[] = [
     description:
       "O Renascido é a verdadeira forma de um poder ancestral, formado pela fusão dos cinco fragmentos espectrais. Quando algo ameaça a vida na Terra, os fragmentos ressoam e se reúnem, dando origem a esse Geekmon com poderes incomparáveis. Após cumprir seu propósito, O Renascido inevitavelmente se desfaz, retornando aos fragmentos até que o mundo precise dele novamente. Dizem as lendas que seu surgimento ocorre em ciclos já predestinados, em um loop eterno de momentos de luz e escuridão.",
     ref: "Uma poderosa entidade fragmentada em 5 partes que quando reunidas libera um poder obliterador.",
+    groups: ["pink"],
     tags: [],
     evolutions: [["105"]],
     habitat: [],
@@ -1546,6 +1690,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Overmouth é o Crescimento Desenfreado de Rootworm, no qual sua boca cresce de maneira colossal, sendo capaz de engolir criaturas inteiras e cavar enormes túneis subterrâneos, devorando a terra ao seu redor. Em sua forma desenfreada, Overmouth é movido por um instinto primitivo de predador, tornando-o muito perigoso. Diz-se que seu surgimento é um sinal de que a própria natureza busca restaurar o equilíbrio, devorando tudo o que ameaça o ciclo natural.",
     ref: "Um colossal verme de areia, conhecido por mover-se por debaixo da terra e inspirar terror nas dunas do deserto.",
+    groups: ["brown"],
     tags: ["over"],
     evolutions: [["020", "106"]],
     habitat: ["deserto", "floresta"],
@@ -1560,6 +1705,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Overhorn é o Crescimento Desenfreado de Malemoth, onde seus chifres crescem em grandes espirais que irradiam uma energia sombria. Seus chifres não são apenas incrivelmente resistentes, mas também canalizam uma força mística que distorce o ambiente ao redor, criando poderosas ilusões. Diz-se que quando Overhorn aparece, ele traz consigo o crepúsculo eterno, um sinal de que a balança entre luz e escuridão está prestes a se desequilibrar.",
     ref: "Uma poderosa feiticeira conhecida por sua transformação dramática e uma presença intimidadora.",
+    groups: ["blue"],
     tags: ["over"],
     evolutions: [["023", "107"]],
     habitat: ["campo", "floresta"],
@@ -1574,6 +1720,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Overfist é o Crescimento Desenfreado de Sacicatu, no qual dois punhos flutuantes feitos de pura energia espiritual surgem, capazes de desferir golpes com uma força descomunal, fortes o suficiente para abrir fissuras no solo. Em sua forma desenfreada, Overfist torna-se ainda mais agressivo, completamente focado em esmagar qualquer ameaça. As lendas locais dizem que o surgimento de Overfist é um presságio de que a terra está prestes a enfrentar um grande desastre e precisa de proteção.",
     ref: "Uma figura folclórica famosa por sua natureza travessa e por desaparecer em redemoinhos enquanto prega peças.",
+    groups: ["blue"],
     tags: ["over"],
     evolutions: [["027", "108"]],
     habitat: ["floresta", "montanha"],
@@ -1658,6 +1805,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Overfierce é o Crescimento Desenfreado de Lemurkin, onde sua forma pequenina dá lugar a um primata colérico envolto em chamas. Overfierce é um verdadeiro avatar da destruição, usando sua força titânica e seu rugido ensurdecedor para intimidar qualquer ameaça. Em momentos de extremo perigo, o céu se torna alaranjado, sinalizando a presença de Overfierce e marcando o início de um confronto que vai moldar o destino do mundo superior.",
     ref: "Um guerreiro com uma força extraordinária, capaz de alcançar novas formas de poder conforme enfrenta ameaças maiores.",
+    groups: ["green"],
     tags: ["over"],
     evolutions: [["099", "114"]],
     habitat: ["campo"],
@@ -1744,6 +1892,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Plumixie, uma pequena coruja recém-introduzida no mundo da magia, ainda não é capaz de desferir ataques do tipo místico. No entanto, seu olhar curioso e determinação demonstram que está destinado a coisas grandiosas. Seu destino é moldado por sua personalidade e suas ações ao longo de sua jornada mágica. Muitos treinadores dizem que a verdadeira magia de Plumixie reside em seu potencial, que ainda está adormecido.",
     ref: "Um jovem bruxo, famoso por sobreviver a um terrível ataque que lhe deixou com uma cicatriz em forma de raio.",
+    groups: ["black"],
     tags: [],
     evolutions: [["119", "120", "121"]],
     habitat: ["montanha", "floresta"],
@@ -1758,6 +1907,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Magivowl é uma coruja aprendiz de bruxaria, exibindo suas habilidades mágicas em desenvolvimento. Embora ainda tenha muito a aprender, sua dedicação à magia é clara. Magivowl possui quatro variações, cada uma com um cachecol colorido, representando diferentes traços de personalidade. Dependendo de sua natureza — corajosa, leal, inteligente ou astuta — o caminho de sua evolução se reflete no cachecol que usa.",
     ref: "Um jovem bruxo, famoso por sobreviver a um terrível ataque que lhe deixou com uma cicatriz em forma de raio.",
+    groups: ["black"],
     tags: [],
     evolutions: [["119", "120", "121"]],
     habitat: ["montanha", "floresta"],
@@ -1772,6 +1922,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Hypnowl é uma coruja bruxa de grande sabedoria e poder. Após anos de estudo e prática, ele dominou todas as artes da bruxaria, tornando-se uma figura imponente no mundo mágico. Sua habilidade mais notável é o poder de hipnotizar seus inimigos, colocando-os em um transe profundo. Apesar de seu comportamento misterioso e distante, Hypnowl é um protetor leal daqueles que ele considera aliados, utilizando sua magia para manter a paz e a harmonia.",
     ref: "Um jovem bruxo, famoso por sobreviver a um terrível ataque que lhe deixou com uma cicatriz em forma de raio.",
+    groups: ["black"],
     tags: [],
     evolutions: [["119", "120", "121"]],
     habitat: ["montanha", "floresta"],
@@ -1786,6 +1937,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Gamedin é um pequeno Geekmon sonhador e ingênuo. Inspirado pelos heróis de suas aventuras imaginárias, ele carrega consigo uma espada de madeira e um escudo feito de uma casca de noz. Apesar de sua aparência frágil, Gamedin possui uma determinação inabalável e uma incrível capacidade de gerar eletricidade que ele canaliza para defender aqueles que ama. Seu sonho é se tornar um poderoso guerreiro, mas por enquanto, ele explora o mundo com um coração cheio de esperança e curiosidade.",
     ref: "Um console portátil que trouxe incontáveis aventuras a jogadores de todo o mundo, pequeno mas cheio de possibilidades.",
+    groups: ["black"],
     tags: [],
     evolutions: [["122"]],
     habitat: ["urbano", "campo"],
@@ -1800,6 +1952,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Mumikitten é um pequeno Geekmon felino reverenciado pelos povos antigos do deserto, frequentemente encontrado vagando próximo a ruínas e tumbas esquecidas. Com seu corpo envolto em finas faixas de tecido, ele é visto como um guardião sagrado dos segredos ancestrais e simboliza proteção e longevidade. Embora seja tímido e raramente interaja com os humanos, aqueles que ganham sua confiança dizem que Mumikitten traz a sorte e proteção dos antigos espíritos em suas viagens pelo deserto.",
     ref: "Um ser antigo envolto em faixas, conhecido por seu poder assustador e sua ligação com tumbas e maldições.",
+    groups: ["light_green"],
     tags: [],
     evolutions: [["123", "124"]],
     habitat: ["deserto", "caverna"],
@@ -1814,6 +1967,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Pharacat é um Geekmon temido, coberto por faixas envelhecidas e portador de uma aura de mistério. Dizem que este Geekmon guarda as tumbas dos antigos faraós, possuindo poderes obscuros que ele utiliza para proteger os tesouros enterrados com eles. Sua presença é respeitada pelos arqueólogos e aventureiros, que acreditam que cruzar seu caminho pode resultar em maldições que duram gerações. Pharacat é feroz e implacável, fazendo de tudo para proteger as tumbas dos profanadores.",
     ref: "Um ser antigo envolto em faixas, conhecido por seu poder assustador e sua ligação com tumbas e maldições.",
+    groups: ["light_green"],
     tags: [],
     evolutions: [["123", "124"]],
     habitat: ["deserto", "caverna"],
@@ -1828,6 +1982,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Quackney é um jovem Geekmon cheio de energia e entusiasmo, sempre pronto para explorar novas águas e viver grandes aventuras. Com seu espírito curioso e inocente, ele se vê como um ajudante que sonha em se tornar um grande explorador, frequentemente se metendo em pequenas confusões quando tenta ajudar nas tarefas do navio. Quackney é fascinado pela beleza do oceano e adora acompanhar seus treinadores em expedições, encantando-se com cada novo horizonte que alcança.",
     ref: "Um pato rabugento e temperamental, famoso por suas aventuras e desventuras ao lado de seus amigos.",
+    groups: ["white"],
     tags: [],
     evolutions: [["125", "126"]],
     habitat: ["água", "praia"],
@@ -1842,6 +1997,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Naviduck é conhecido por sua robustez e temperamento forte. Ele é o companheiro perfeito para expedições marítimas, auxiliando os seres humanos a navegarem pelos sete mares. Com um conhecimento profundo sobre as correntezas, Naviduck orienta os navegadores, muitas vezes se tornando a bússola de seus amigos em mar aberto. Ele é reverenciado por marinheiros que contam histórias sobre suas proezas, como ter guiado barcos através de tempestades furiosas e resgatado tripulações em perigo.",
     ref: "Um pato rabugento e temperamental, famoso por suas aventuras e desventuras ao lado de seus amigos.",
+    groups: ["white"],
     tags: [],
     evolutions: [["125", "126"]],
     habitat: ["água", "praia"],
@@ -1856,6 +2012,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Smasher é um Geekmon audacioso e enérgico, sempre disposto a se lançar em combate. Sua habilidade de esmagar seus adversários com um único ataque de seu poderoso golpe de marreta é impressionante. Apesar de seu tamanho pequeno, Smasher exibe uma coragem surpreendente e é conhecido por enfrentar desafios que deixariam muitos em dúvida. Com um coração generoso, ele frequentemente ajuda outros Geekmon a superar obstáculos e sempre traz um toque de humor às situações mais difíceis.",
     ref: "Um herói desajeitado que sempre se mete em confusão, mas está disposto a ajudar a todos com seu bom coração.",
+    groups: ["light_green"],
     tags: [],
     evolutions: [["127"]],
     habitat: ["floresta", "campo"],
@@ -1870,6 +2027,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Arachny é um pequeno Geekmon com uma curiosa afinidade por humanos. Seu corpo leve permite que escale rapidamente qualquer superfície e sua teia resistente pode ser usada tanto para se mover de forma ágil quanto para capturar presas. Ele é conhecido por sua capacidade de sentir quando está em perigo, reagindo de maneira instintiva e eficaz. Há rumores de que aqueles que são picados por Arachny podem, por breves momentos, ganhar reflexos sobre-humanos.",
     ref: "O herói amigo da vizinhança, famoso por nunca fugir de seu dever, mesmo com a vida sempre de cabeça para baixo.",
+    groups: ["light_green"],
     tags: [],
     evolutions: [["128", "129"]],
     habitat: ["floresta", "urbano"],
@@ -1884,6 +2042,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Arachman combina força, agilidade e inteligência, lançando suas teias para prender inimigos ou balançar por entre estruturas como prédios e árvores. O senso de justiça de Arachman é tão afiado quanto suas presas, frequentemente auxiliando treinadores a protegerem aqueles que estão em perigo. Arachman é conhecido por seu senso de responsabilidade, sempre pronto para enfrentar o mal de frente.",
     ref: "O herói amigo da vizinhança, famoso por nunca fugir de seu dever, mesmo com a vida sempre de cabeça para baixo.",
+    groups: ["light_green"],
     tags: [],
     evolutions: [["128", "129"]],
     habitat: ["floresta", "urbano"],
@@ -1898,6 +2057,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Genome é recluso e obcecado por pedras preciosas que coleciona e adorna em seu corpo. Sua joia mais preciosa é um anel de cristal, que protege com uma devoção incomparável. Este Geekmon raramente é visto longe de suas cavernas, onde se esconde com seu tesouro, agindo de forma possessiva e paranóica caso sinta que suas pedras estão ameaçadas. Apesar de sua natureza isolada, Genome é incrivelmente astuto, tornando-o difícil de ser capturado.",
     ref: 'Uma criatura que faz de tudo para proteger seu "precioso" tesouro, mesmo que tenha que falar consigo mesmo para desabafar.',
+    groups: ["black"],
     tags: [],
     evolutions: [["130"]],
     habitat: ["caverna", "montanha"],
@@ -1912,6 +2072,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Nightpetal é um Geekmon misterioso, cuja flor ainda não desabrochou. Uma pequena esfera de luz incolor flutua acima de sua cabeça, da qual ele protege cuidadosamente. Embora pareça inofensivo, Nightpetal possui uma forte conexão com as forças da natureza, sendo capaz de absorver a energia do luar para se fortalecer. Os treinadores dizem que, ao anoitecer, é possível sentir o poder de sua evolução começando a crescer silenciosamente.",
     ref: "Um símbolo supremo de poder raro e transcendental, desejado por todos, mas dominado por poucos.",
+    groups: ["white"],
     tags: [],
     evolutions: [["131", "132"]],
     habitat: ["campo", "floresta"],
@@ -1926,6 +2087,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Quando Nightpetal absorve energia do luar suficiente, ele se transforma em Nightbloom, uma magnífica flor de lótus com cinco esferas de luz flutuando em sua coroa, cada uma irradiando uma cor. Essas esferas podem canalizar as energias elementais da natureza, da luz e da escuridão. Nightbloom é uma criatura majestosa, reverenciada por muitos como um símbolo de equilíbrio e sabedoria. Suas habilidades de combate são tão variadas quanto as cores de suas esferas, tornando-o um Geekmon muito desejado pelos treinadores.",
     ref: "Um símbolo supremo de poder raro e transcendental, desejado por todos, mas dominado por poucos.",
+    groups: ["white"],
     tags: [],
     evolutions: [["131", "132"]],
     habitat: ["campo", "floresta"],
@@ -1940,6 +2102,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Flamegon é um dragão jovem e cheio de energia. Embora pequeno, seu corpo já exibe sinais de poder, com pequenas chamas constantemente dançando em suas escamas. Flamegon adora testar seus limites, expelindo pequenas rajadas de fogo e treinando para voar em terrenos montanhosos. Ele sonha em dominar os céus, mas por enquanto usa suas garras afiadas para escalar rochas e suas chamas para afastar os inimigos.",
     ref: "Um dragão lendário, famoso por seu poder devastador e status mítico, sempre almejado tanto em batalhas quanto em coleções.",
+    groups: ["black"],
     tags: [],
     evolutions: [["133", "134"]],
     habitat: ["montanha", "deserto"],
@@ -1954,6 +2117,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Eldergon é um dragão imponente cuja simples presença impõe respeito absoluto. Suas enormes asas e corpo envolto em chamas são capazes de provocar tempestades de fogo. Com uma sabedoria acumulada ao longo dos anos, ele é frequentemente encontrado no topo de montanhas vulcânicas observando as terras abaixo com seus olhos vigilantes. Apesar de seu imenso poder, Eldergon valoriza a honra e age como um protetor para aqueles que conquistam sua confiança.",
     ref: "Um dragão lendário, famoso por seu poder devastador e status mítico, sempre almejado tanto em batalhas quanto em coleções.",
+    groups: ["black"],
     tags: [],
     evolutions: [["133", "134"]],
     habitat: ["montanha", "deserto"],
@@ -1968,6 +2132,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Phantomech era a estrela de um buffet infantil antes de ser descartado e abandonado. Algo sombrio o encontrou e se apossou de seu corpo de metal. Agora, com circuitos queimados e olhos brilhando em um tom perturbador, Phantomech espreita pelas sombras buscando capturar qualquer um que cruze seu caminho. Mesmo com sua nova forma espectral, suas partes mecânicas ainda funcionam, permitindo-lhe se mover com passos erráticos. Sua risada metálica ecoa à noite causando arrepios nos corações.",
     ref: "Um animatrônico sinistro, famoso por ganhar vida à noite e perseguir incansavelmente o vigia noturno do local.",
+    groups: ["light_green"],
     tags: [],
     evolutions: [["135"]],
     habitat: ["urbano", "neve"],
@@ -1982,6 +2147,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Cordybug é um pequeno parasita que se fixa a Geekmons artrópodes, tomando o controle de suas ações através de habilidades telepáticas. Embora o hospedeiro permaneça vivo, suas ações são completamente manipuladas por Cordybug, que utiliza o corpo para procurar ambientes ricos em nutrientes. Cordybug raramente é avistado e, quando encontrado, está sempre associado a seu hospedeiro. A cor de Cordybug é fortemente influenciada por seu Geekmon parasitado, tornando-se luminoso apenas ao parasitar um hospedeiro luminoso.",
     ref: "Um parasita real chamado Cordyceps, famoso por servir de inspiração para jogos e filmes dentro da cultura pop.",
+    groups: ["white"],
     tags: [],
     evolutions: [["136", "137", "138"]],
     habitat: ["caverna", "floresta"],
@@ -1996,6 +2162,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Ao evoluir, Cordyspore transforma seu Geekmon hospedeiro em uma carcaça atrofiada, agora completamente dominada pela colônia de cogumelos que cresce em seu corpo. O corpo sem vida do hospedeiro, mantido por suas habilidades psíquicas, age como um atrativo para novos alvos em preparação para sua evolução final. Graças a sua aura mística, o controle sobre os organismos ao seu redor se fortalece, tornando-os presas fáceis para seus esporos.",
     ref: "Um parasita real chamado Cordyceps, famoso por servir de inspiração para jogos e filmes dentro da cultura pop.",
+    groups: ["white"],
     tags: [],
     evolutions: [["136", "137", "138"]],
     habitat: ["caverna", "floresta"],
@@ -2010,6 +2177,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Cordyzap atinge sua maturidade plena com o corpo de seu hospedeiro quase irreconhecível, agora completamente envolto em uma rede de fungos eletrificados. Ao emitir descargas elétricas, Cordyzap provoca explosões controladas de esporos em várias direções, espalhando-se pelo ambiente e pronto para parasitar novos Geekmons. Com essa habilidade de dispersão, Cordyzap representa uma ameaça ambiental significativa, sendo constantemente monitorado por especialistas Geekmon.",
     ref: "Um parasita real chamado Cordyceps, famoso por servir de inspiração para jogos e filmes dentro da cultura pop.",
+    groups: ["white"],
     tags: [],
     evolutions: [["136", "137", "138"]],
     habitat: ["caverna", "floresta"],
@@ -2024,6 +2192,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Pandura é um Geekmon pequenino e desengonçado que luta para manter o equilíbrio ao andar, muitas vezes tropeçando devido à sua natureza desajeitada. As bolsas de água espalhadas pelo seu corpo ajudam a amortecer suas inúmeras quedas. Apesar de sua falta de equilíbrio, Pandura nunca desiste, sempre com um espírito determinado. Ele também usa seus jatos de água para criar alguma 'vantagem' nas batalhas, mesmo que seja só para manter os oponentes longe até ele se levantar novamente.",
     ref: "Um panda atrapalhado, mas cheio de determinação, que treina duro para se tornar um mestre lutador.",
+    groups: ["black"],
     tags: [],
     evolutions: [["139", "140"]],
     habitat: ["floresta", "água"],
@@ -2038,6 +2207,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Pandartial é um exímio lutador de sumô com controle total de seu corpo. Suas bolsas de água, agora muito mais robustas, são capazes de absorver os impactos dos ataques recebidos e também podem ser utilizadas para liberar fortes rajadas de água que desestabilizam seus adversários. Embora tenha um temperamento calmo, Pandartial é capaz de lutar com incrível força. Ele usa o equilíbrio perfeito entre suas habilidades com a água e sua força física para prevalecer sobre qualquer desafio.",
     ref: "Um panda atrapalhado, mas cheio de determinação, que treina duro para se tornar um mestre lutador.",
+    groups: ["black"],
     tags: [],
     evolutions: [["139", "140"]],
     habitat: ["floresta", "água"],
@@ -2052,6 +2222,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Ogrespark possui uma pele áspera como a terra e um temperamento tão imprevisível quanto uma tempestade. Ele combina sua força bruta com descargas elétricas que podem eletrocutar o chão ao seu redor para afugentar os invasores de seu território. Ogrespark tem uma tendência peculiar de causar desastres acidentais quando irritado, como acionar raios que destroem áreas inteiras. Muitos o evitam na tentativa de impedir os problemas que ele pode causar sem querer quando está de mau humor.",
     ref: "Um ogro mal-humorado, mas de bom coração, famoso por suas desventuras em um mundo repleto de contos de fadas.",
+    groups: ["white"],
     tags: [],
     evolutions: [["141"]],
     habitat: ["floresta", "montanha"],
@@ -2066,6 +2237,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Brigaboo é um Geekmon doce, mas seu comportamento muda constantemente de acordo com suas emoções. Os fantasminhas que o acompanham representam cada uma delas, polvilhando suas influências sobre Brigaboo. Seja brilhando de felicidade ou tremendo de medo, Brigaboo nunca está no controle total de seus sentimentos. Seus fantasmas são pequenos, mas poderosos, e os treinadores que compreendem suas emoções são capazes de utilizá-lo de maneiras surpreendentemente estratégicas.",
     ref: "Pequenas criaturinhas que vivem em nossa cabeça, conhecidas por tomarem conta de nossas emoções.",
+    groups: ["white"],
     tags: [],
     evolutions: [["142"]],
     habitat: ["campo", "urbano"],
@@ -2080,6 +2252,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Raptide é famoso por sua incrível agilidade tanto na terra quanto na água. Suas escamas brilhantes refletem a luz do sol, permitindo que ele desapareça dentro da água. Rapitides costumam andar sempre em bando, coordenando seus ataques em táticas rápidas de emboscada. Sua habilidade de trabalho coletivo e capacidade tática fazem dele um excelente companheiro para missões complexas de resgate.",
     ref: "Um grupo de heróis que trabalha em equipe, conhecidos por combinarem forças tornando-se um robô gigante.",
+    groups: ["light_green"],
     tags: [],
     evolutions: [["143", "144", "145"]],
     habitat: ["floresta", "praia"],
@@ -2094,6 +2267,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Mecharaptide é a evolução mecânica de Raptide, com escamas reforçadas por armaduras metálicas e componentes hidráulicos. Seus jatos de água de alta pressão podem romper rochas ou impulsioná-lo a grandes velocidades. Sua inteligência e capacidade de adaptação tática tornam extremamente difícil prever seus movimentos. Mecharaptide é conhecido por seu foco e precisão, sempre pronto para defender seus aliados com táticas implacáveis.",
     ref: "Um grupo de heróis que trabalha em equipe, conhecidos por combinarem forças tornando-se um robô gigante.",
+    groups: ["light_green"],
     tags: [],
     evolutions: [["143", "144", "145"]],
     habitat: ["floresta", "praia"],
@@ -2108,6 +2282,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Trexazord é um imenso T-rex mecânico, com escamas metálicas que brilham com um calor abrasador. Capaz de controlar tanto a fúria das águas quanto o poder destrutivo do fogo, sua presença avassaladora e poder imenso é capaz de intimidar até mesmo os mais corajosos adversários. Trexazord é considerado o líder dos Geekmon dinossauros, estando sempre presente em qualquer combate de larga escala.",
     ref: "Um grupo de heróis que trabalha em equipe, conhecidos por combinarem forças tornando-se um robô gigante.",
+    groups: ["light_green"],
     tags: [],
     evolutions: [["143", "144", "145"]],
     habitat: ["floresta", "praia"],
@@ -2122,6 +2297,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Firetail caminha silenciosamente pelas paisagens congeladas, atuando como uma chama de esperança. Com suas caudas flamejantes, ele controla o calor ao seu redor, trazendo conforto aos viajantes e Geekmons perdidos, e o calor que emana de seu corpo cria trilhas seguras, permitindo que ele navegue com tranquilidade pelas montanhas geladas. Os moradores locais frequentemente deixam oferendas a este Geekmon como um gesto de gratidão pela proteção oferecida aos habitantes.",
     ref: "Um ninja determinado com uma raposa gigante selada dentro de si… e um apetite insaciável por lámen.",
+    groups: ["white"],
     tags: ["legendary"],
     evolutions: [["146"]],
     habitat: ["neve"],
@@ -2136,6 +2312,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Nas regiões mais altas e inacessíveis das montanhas, Shadowvarn reina supremo. Suas asas se estendem como uma sombra sobre os picos e sua presença pode alterar o clima ao seu redor, trazendo tempestades de areia e rajadas de vento que obscurecem a visão de qualquer intruso. Este Geekmon é respeitado não apenas por sua incrível força, mas pela habilidade de manipular o medo e a dúvida, enfraquecendo seus oponentes antes mesmo de iniciar uma batalha.",
     ref: "Um vilão alado montado em seu cavalo, que persegue incessantemente um grupo de heróis que tenta voltar para casa.",
+    groups: ["black"],
     tags: ["legendary"],
     evolutions: [["147"]],
     habitat: ["montanha"],
@@ -2150,6 +2327,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Pairando sobre os arranha-céus, Nightfallen observa a cidade com seus olhos vazios. Este Geekmon vaga pelas sombras, atraído por corações que sucumbiram à ambição e ao poder. Ele se alimenta desses desejos, lentamente drenando a moralidade de seus alvos e se fortalece conforme as pessoas se deixam levar por suas ambições. No entanto, aqueles que conseguem confrontar seus desejos e abraçar a humildade podem romper o ciclo de influência de Nightfallen, escapando de sua sombra.",
     ref: "Um shinigami que adora observar humanos enquanto se diverte com suas escolhas egoístas e sombrias.",
+    groups: ["light_green"],
     tags: ["legendary"],
     evolutions: [["148"]],
     habitat: ["urbano"],
@@ -2164,6 +2342,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Overband é o Crescimento Desenfreado de Pharacat. Suas bandanas carregam o poder de romper o véu entre os mundos, liberando espectros ancestrais que se tornam seus sentinelas. Ele convoca essas entidades para lutar com um frio gélido que parece drenar a energia vital de seus adversários. Quando Overband emerge, o deserto se transforma numa necrópole, oferecendo passagem aos espíritos para defenderem os segredos antigos que eles guardam.",
     ref: "Um ser antigo envolto em faixas, conhecido por seu poder assustador e sua ligação com tumbas e maldições.",
+    groups: ["light_green"],
     tags: ["over"],
     evolutions: [["124", "149"]],
     habitat: ["deserto", "caverna"],
@@ -2178,6 +2357,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Overmatial é o Crescimento Desenfreado de Pandartial, transcendendo sua forma para se tornar um mestre absoluto das artes marciais e da energia mística. Ele abandona o combate bruto, movendo-se com uma precisão quase sobrenatural. Suas técnicas de luta incorporam o fluxo místico das águas, permitindo-lhe manipular correntes e redemoinhos ao seu redor. Ele é capaz de abrir portais momentâneos em rios e lagos, usando-os como pontes para surpreender seus oponentes com a força natural das águas.",
     ref: "Um panda atrapalhado, mas cheio de determinação, que treina duro para se tornar um mestre lutador.",
+    groups: ["black"],
     tags: ["over"],
     evolutions: [["140", "150"]],
     habitat: ["floresta", "água"],
@@ -2192,6 +2372,7 @@ export const geekmons: Geekmon[] = [
     description:
       "Overcharge é o Crescimento Desenfreado de Ogrespark, tornando-se um verdadeiro reator de pura energia elétrica. Quando descarrega sua energia acumulada, Overcharge pode provocar terremotos localizados e fazer com que raios caiam ao seu redor. Em sua forma desenfreada, sua pele se torna uma armadura de minerais e metais enrijecidos, emitindo descargas elétricas constantes que iluminam seu corpo.",
     ref: "Um ogro mal-humorado, mas de bom coração, famoso por suas desventuras em um mundo repleto de contos de fadas.",
+    groups: ["white"],
     tags: ["over"],
     evolutions: [["141", "151"]],
     habitat: ["floresta", "montanha"],
