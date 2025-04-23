@@ -1,5 +1,6 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
+  import { base } from "$app/paths";
   import { geekmons, Gradients } from "$lib/geekmons";
   import { sample } from "underscore";
 
@@ -18,7 +19,7 @@
   <header class="mb-6 flex flex-row">
     <h1 class="text-4xl font-extrabold text-gray-900">Geekdex</h1>
     <div class="ml-auto">
-      <a href="/setup" aria-label="setup">
+      <a href="{base}/setup" aria-label="setup">
         <button class="rounded-xl bg-gray-200 p-2" aria-label="setup">
           <svg
             class="lucide lucide-play-icon lucide-play h-6 w-6 stroke-gray-700 text-gray-700"
