@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { base } from "$app/paths";
   import { geekmons, groups, getSource, type Geekmon, type Tag } from "$lib/geekmons";
 
   let playerNumber: number = $state(JSON.parse(localStorage.getItem("playerNumber")!) ?? 2);
@@ -145,7 +146,7 @@
   <header class="mb-6 flex flex-row">
     <h1 class="text-2xl font-extrabold text-gray-900">Preparar partida</h1>
     <div class="ml-auto">
-      <a href="/" aria-label="home">
+      <a href="${base}/" aria-label="home">
         <button class="rounded-xl bg-gray-200 p-1" aria-label="home">
           <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3 11l9-8 9 8M4 10v10h6v-6h4v6h6V10" />
@@ -164,7 +165,7 @@
               (selectedExpansions.includes(expansion) ? "bg-[#074f43]" : "bg-white text-gray-900")}
             onclick={selectExpansion(expansion)}
           >
-            <img src={"/img/logos/" + expansion + ".png"} alt="base" class="w-24" />
+            <img src={`${base}/img/logos/` + expansion + `.png`} alt="base" class="w-24" />
             <span class="block text-sm leading-none font-bold">{expansioes[expansion]}</span>
           </button>
         </div>
@@ -387,7 +388,7 @@
       <div class="flex flex-wrap justify-center gap-2 font-mono text-gray-900">
         {#each selectedInitials as geekmon, index}
           <div class="flex flex-row justify-center align-items-center mb-5 rounded-xl bg-gray-200 relative p-5 py-5 text-center shadow-md relative">
-            <img src={`/img/geekmons/${geekmon.number}.png`} alt="" class="size-22" />
+            <img src={`${base}/img/geekmons/${geekmon.number}.png`} alt="" class="size-22" />
             <div class="absolute -top-3 p-1 px-2 rounded-xl bg-gray-200 text-center font-bold shadow-md">Jogador {index + 1}</div>
             <div class="absolute -bottom-3 w-[80%] rounded-xl bg-gray-200 text-center font-bold">{geekmon.number}</div>
             <div class="absolute top-0 left-0 z-60 mx-auto flex h-full w-full items-center justify-center">

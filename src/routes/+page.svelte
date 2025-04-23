@@ -36,7 +36,7 @@
           </svg>
         </button>
       </a>
-      <a href="/calculator" aria-label="calculator">
+      <a href="{base}/calculator" aria-label="calculator">
         <button class="rounded-xl bg-gray-200 p-2" aria-label="calculator">
           <svg
             class="lucide lucide-calculator-icon lucide-calculator h-6 w-6 stroke-gray-700 text-gray-700"
@@ -97,8 +97,8 @@
   <div class="grid grid-cols-2 gap-4">
     {#each filtered() as item}
       <div class={`flex flex-col rounded-xl p-4 text-center`} style:background={Gradients[item.elements[0]][0]}>
-        <a href={`/geekmon/${item.number}`}>
-          <img src={`/img/geekmons/${item.number}.png`} alt={item.name} class="mx-auto w-full" />
+        <a href={`${base}/geekmon/${item.number}`}>
+          <img src={`${base}/img/geekmons/${item.number}.png`} alt={item.name} class="mx-auto w-full" />
         </a>
         <h2 class="mt-auto text-lg font-bold text-gray-800">{item.name}</h2>
         <p class="text-sm text-gray-600">#{item.number}</p>
