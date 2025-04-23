@@ -146,7 +146,7 @@
   <header class="mb-6 flex flex-row">
     <h1 class="text-2xl font-extrabold text-gray-900">Preparar partida</h1>
     <div class="ml-auto">
-      <a href="${base}/" aria-label="home">
+      <a href="{base}/" aria-label="home">
         <button class="rounded-xl bg-gray-200 p-1" aria-label="home">
           <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3 11l9-8 9 8M4 10v10h6v-6h4v6h6V10" />
